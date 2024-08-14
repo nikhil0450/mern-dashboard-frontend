@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { 
-  Table, TableBody, TableCell, TableContainer, 
-  TableHead, TableRow, Paper, TextField, 
-  Button, FormControl, Select, MenuItem, 
-  Container, Box 
-} from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Button, FormControl, Select, MenuItem, Container, Box } from '@mui/material';
 
-const TransactionTable = ({ selectedMonth, onMonthChange }) => {
+const TransactionTable = ({ selectedMonth = 'March', onMonthChange = () => {} }) => {
   const [transactions, setTransactions] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,25 +14,25 @@ const TransactionTable = ({ selectedMonth, onMonthChange }) => {
   ];
 
   useEffect(() => {
-    fetchTransactions();
-  }, [selectedMonth, searchQuery, currentPage]);
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get('https://mern-dashboard-backend-ahbj.onrender.com/transactions', {
+          params: {
+            month: selectedMonth,
+            search: searchQuery,
+            page: currentPage,
+            limit: 3
+          }
+        });
+        setTransactions(response.data.transactions);
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
+        console.error('Error fetching transactions', error);
+      }
+    };
 
-  const fetchTransactions = async () => {
-    try {
-      const response = await axios.get(`https://mern-dashboard-backend-ahbj.onrender.com/transactions`, {
-        params: {
-          month: selectedMonth,
-          search: searchQuery,
-          page: currentPage,
-          limit: 3
-        }
-      });
-      setTransactions(response.data.transactions);
-      setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error('Error fetching transactions', error);
-    }
-  };
+    fetchTransactions();
+  }, [selectedMonth, searchQuery, currentPage]); 
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -64,12 +59,7 @@ const TransactionTable = ({ selectedMonth, onMonthChange }) => {
 
   return (
     <Container style={{ marginTop: '20px' }}>
-      <Box 
-        display="flex" 
-        justifyContent="center" 
-        alignItems="center" 
-        marginBottom="20px"
-      >
+      <Box display="flex" justifyContent="center" alignItems="center" marginBottom="20px">
         <FormControl style={{ marginRight: '10px' }}>
           <Select value={selectedMonth} onChange={handleMonthChange}>
             {months.map((month, index) => (

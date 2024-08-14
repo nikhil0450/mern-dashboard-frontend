@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Paper, Typography, Grid } from '@mui/material';
 
-const Statistics = ({ selectedMonth }) => {
+const Statistics = ({ selectedMonth = 'March' }) => {
   const [stats, setStats] = useState({ totalSales: 0, totalSoldItems: 0, totalUnsoldItems: 0 });
 
   useEffect(() => {
-    fetchStatistics();
-  }, [selectedMonth]);
+    const fetchStatistics = async () => {
+      try {
+        const response = await axios.get('https://mern-dashboard-backend-ahbj.onrender.com/transactions/stats', {
+          params: { month: selectedMonth }
+        });
+        setStats(response.data);
+      } catch (error) {
+        console.error('Error fetching statistics', error);
+      }
+    };
 
-  const fetchStatistics = async () => {
-    try {
-      const response = await axios.get(`https://mern-dashboard-backend-ahbj.onrender.com/transactions/stats`, {
-        params: { month: selectedMonth }
-      });
-      setStats(response.data);
-    } catch (error) {
-      console.error('Error fetching statistics', error);
-    }
-  };
+    fetchStatistics();
+  }, [selectedMonth]); 
 
   return (
     <Grid container spacing={2}>
