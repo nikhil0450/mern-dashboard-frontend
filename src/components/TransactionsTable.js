@@ -25,7 +25,7 @@ const TransactionTable = ({ selectedMonth, onMonthChange }) => {
 
   const fetchTransactions = async () => {
     try {
-      const response = await axios.get(`${backend}/transactions`, {
+      const response = await axios.get(`https://mern-dashboard-backend-ahbj.onrender.com/transactions`, {
         params: {
           month: selectedMonth,
           search: searchQuery,

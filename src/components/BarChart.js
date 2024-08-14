@@ -12,7 +12,7 @@ const BarChartComponent = ({ selectedMonth }) => {
 
   const fetchChartData = async () => {
     try {
-      const response = await axios.get(`${backend}/transactions/chart`, {
+      const response = await axios.get(`https://mern-dashboard-backend-ahbj.onrender.com/transactions/chart`, {
         params: { month: selectedMonth }
       });
       setChartData(response.data.priceDistribution);

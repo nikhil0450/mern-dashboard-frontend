@@ -12,7 +12,7 @@ const Statistics = ({ selectedMonth }) => {
 
   const fetchStatistics = async () => {
     try {
-      const response = await axios.get(`${backend}/transactions/stats`, {
+      const response = await axios.get(`https://mern-dashboard-backend-ahbj.onrender.com/transactions/stats`, {
         params: { month: selectedMonth }
       });
       setStats(response.data);
