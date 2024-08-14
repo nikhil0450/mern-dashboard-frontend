@@ -4,7 +4,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 const BarChartComponent = ({ selectedMonth }) => {
   const [chartData, setChartData] = useState([]);
-  const backend = process.env.BACKEND_URL
 
   useEffect(() => {
     fetchChartData();

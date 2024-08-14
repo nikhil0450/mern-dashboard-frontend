@@ -17,7 +17,6 @@ const TransactionTable = ({ selectedMonth, onMonthChange }) => {
     "January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"
   ];
-  const backend = process.env.BACKEND_URL
 
   useEffect(() => {
     fetchTransactions();

@@ -4,7 +4,6 @@ import { Paper, Typography, Grid } from '@mui/material';
 
 const Statistics = ({ selectedMonth }) => {
   const [stats, setStats] = useState({ totalSales: 0, totalSoldItems: 0, totalUnsoldItems: 0 });
-  const backend = process.env.BACKEND_URL
 
   useEffect(() => {
     fetchStatistics();
