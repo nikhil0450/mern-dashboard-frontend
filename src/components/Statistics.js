@@ -18,23 +18,23 @@ const Statistics = ({ selectedMonth = 'March' }) => {
     };
 
     fetchStatistics();
-  }, [selectedMonth]); 
+  }, [selectedMonth]);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
+    <Grid container spacing={2} justifyContent="center">
+      <Grid item xs={12} sm={4}>
         <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
           <Typography variant="h6">Total Sales</Typography>
           <Typography variant="h4">${stats.totalSales.toFixed(2)}</Typography>
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={4}>
         <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
           <Typography variant="h6">Total Sold Items</Typography>
           <Typography variant="h4">{stats.totalSoldItems}</Typography>
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={4}>
         <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
           <Typography variant="h6">Total Unsold Items</Typography>
           <Typography variant="h4">{stats.totalUnsoldItems}</Typography>

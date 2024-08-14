@@ -1,0 +1,16 @@
+.description {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .description button {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 600px) {
+    .description {
+      font-size: 0.9rem;
+    }
+  }
+  
