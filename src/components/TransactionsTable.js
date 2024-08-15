@@ -95,11 +95,11 @@ const TransactionTable = ({ selectedMonth = 'March', onMonthChange = () => {} })
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Sold</TableCell>
+              <TableCell><b>Title</b></TableCell>
+              <TableCell><b>Description</b></TableCell>
+              <TableCell><b>Price</b></TableCell>
+              <TableCell><b>Category</b></TableCell>
+              <TableCell><b>Sold</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
